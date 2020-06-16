@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link href="main.css" rel="stylesheet">
+        <title>A escolha</title>
+    </head>
+    <body> 
+        <p class="instrucaoUm">Antes de iniciar o jogo, execute o comando Ctrl + Shift + j.</p><br>
+        <p class="instrucaoDois">Obs.: A cada escolha realizada um dado de 0 - 9 e rolado afim de medir o sucesso de suas escolhas</p><br><br><br>
+        <button id="btn">Start</button>
+        <audio src="Song.mp3"></audio>
+        <script>
+            //Declaração de variáveis
+            var escolha, escolha1, escolha2;
+            var teste, bonus;
+            //Chamar função start que inicia todas as outras funções do jogo
+            var btn = document.querySelector("button");
+            btn.onclick = start;
+            //Implementar audio
+            /*var audio = document.querySelector("audio");
+            audio.play();*/
+            
+            //Função de start que chama todas as outras funções/fases do jogo
+            function start(){
+                //Inicio do jogo, primeira fase
+                if(faseUm() == 1){
+                    //Realizar teste de percepção gerando número aleatório de 0 até 9
+                    teste = Math.floor(Math.random() * 10);
+
+                    //Consequencias do teste de percepção
+                    if(teste <= 5){
+                        console.log("Não passou no teste de percepção, seu resultado foi: " + teste);
+                        //Chamo a função/fase caminho um
+                        caminhoUm();
+                    }
+                    else if(teste > 5){
+                        console.log("Sucesso no teste de percepção, seu resultado foi: " + teste);
+                        //Chamo a função/fase caminho dois
+                        caminhoDois();
+                    }
+                }
+
+                //Escolhas da função caminhoUm
+                if(escolha1 == 1){
+                    console.log("Você digitou 1");
+                    //Realizar teste de sucesso
+                    teste = Math.floor(Math.random() * 10);
+                    console.log("Seu sucesso foi de : " + teste);
+                    if(teste > 5){
+                        prompt("Suas mãos soavam frio por estar tão perto da morte novamente, no entanto, quando o monstro exibiu sua altura e chiou alto, sua adaga atingiu a barriga do animal deixando-o assustado e ferido.");
+                    }
+                    if(teste < 5){
+                        prompt("Suas mãos soavam frio por estar tão perto da morte novamente, no entanto, quando o monstro exibiu sua altura e chiou alto, sua adaga atingiu a barriga do animal deixando-o assustado e ferido. No entanto, você machucou sua mão e o veneno queima sua pele");
+                    }
+                }
+                if(escolha1 == 2){
+                    console.log("Você digitou 2");
+                    //Realizar teste de sucesso, essa escolha recebe um bonus adicional
+                    bonus = 2;
+                    teste = Math.floor(Math.random() * 10 + bonus);
+                    console.log("Seu sucesso foi de : " + teste);
+                    if(teste > 5){
+                        prompt("Você deu um aperto forte em sua adaga e saltou sobre o animal ferindo seus olhos. A aranha chiou de dor e deu uma mordida leve no seu ombro.");
+                        prompt("O veneno queima um pouco sua pele mas não chega a debilitar Você.");
+                    }
+                    if(teste < 5){
+                        prompt("Você deu um aperto forte em sua adaga e saltou sobre o animal ferindo seus olhos. A aranha chiou de dor e deu uma mordida brutal no seu ombro.");
+                        prompt("Agora o veneno do monstro queima sua pele. Se nada for feito você poderá morrer em pouco tempo. Mas como eu sou muito legal vou te ajudar dessa vez.");
+                    }
+                }
+                //Escolhas da função caminhoDois
+                if(escolha2 == 1){
+                    console.log("Você digitou 1");
+                    //Realizar teste de sucesso
+                    teste = Math.floor(Math.random() * 10);
+                    console.log("Seu sucesso foi de : " + teste);
+                }
+                if(escolha2 == 2){
+                    console.log("Você digitou 2");
+                    //Realizar teste de sucesso, essa escolha recebe um bonus adicional
+                    bonus = 2;
+                    teste = Math.floor(Math.random() * 10 + bonus);
+                    console.log("Seu sucesso foi de : " + teste);
+                }
+            }
+            
+            //Fase um
+            function faseUm(){
+                escolha = prompt("A única coisa da qual você recorda é da sua busca. Uma flor rara que deveria significar algo muito importante. Mas quem liga? Você está preso no submundo tentando sobreviver à monstros horripilantes. Digite 1 para realizar o teste de percepção.");
+                //Enquanto a resposta do escolha 1 não for um número
+                if(isNaN(escolha) || escolha != 1){
+                    //Chamo o prompt de novo
+                    escolha = prompt("A única coisa da qual você recorda é da sua busca. Uma flor rara que deveria significar algo muito importante. Mas quem liga? Você está preso no submundo tentando sobreviver à monstros horripilantes. Digite 1 para realizar o teste de percepção.");
+                }
+                return escolha;
+            }
+
+            //Primeiro caminho da fase um
+            function caminhoUm(){
+                //Declarei o escolha1 como variável global afim de usá-la fora da minha função
+                escolha1 = prompt("Sua visão está cansada devido aos últimos dias. Você caminhou por entre as árvores mortas da região, e não percebeu quando uma Aranha Cristal jovem estava por perto.");
+                escolha1 = prompt("A única ferramenta de defesa ou ataque disponível é uma adaga de porte pequeno. Você vê alguns ossos no chão mas a aranha está correndo em sua direção em alta velocidade");
+                escolha1 = prompt("Para escolher uma ação digite um número. 1 - Ataque o monstro com sua adaga tentando atingir um ponto vital. 2 - Correr da Aranha Cristal e apanhar os ossos para se defender.");
+
+                //Se a resposta do escolha1 não atender aos meus requisitos eu chamo o prompt novamente
+                if(isNaN(escolha1)){
+                    //Chamo o prompt de novo
+                    escolha1 = prompt("Para escolher uma ação digite um número. 1 - Ataque o monstro com sua adaga tentando atingir um ponto vital. 2 - Correr da Aranha Cristal e apanhar os ossos para se defender.");
+                }
+                return escolha1;
+            }
+            
+            //Caminho dois
+            function caminhoDois(){
+                escolha2 = prompt("Apesar do cansaço sentido, você visualizou uma Aranha Cristal entre as árvores secas do submundo.");
+                escolha2 = prompt("O monstro ainda não percebeu sua presença, mas é só questão de tempo meu amigo. Sua teia é altamente venenosa e sua mordida... Bem, isso Você já deve imaginar.");
+                escolha2 = prompt("Para escolher uma ação digite um número. 1 - Aproveite a distração do monstro para tentar acertá-lo em um ponto vital. 2 - Se esconder da Aranha Cristal");
+
+                //Enquanto a resposta do escolha 2 não for um número
+                if(isNaN(escolha2)){
+                    //Chamo o prompt de novo
+                    escolha2 = prompt("Para escolher uma ação digite um número. 1 - Aproveite a distração do monstro para tentar acertá-lo em um ponto vital. 2 - Se esconder da Aranha Cristal");
+                }
+                return escolha2;
+            }
+
+        </script>
+    </body>
+</html>

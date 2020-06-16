@@ -1,0 +1,36 @@
+body{
+    background-image: url(Background.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position-x: center;
+    background-position-y: center;
+    background-color:#070B19;
+    text-align: center;
+    
+}
+.instrucaoUm {
+    padding:10px;
+    padding-top: 30px;
+    text-align: center;
+    font-family: mario;
+    font-size: 30px;
+    color:white;
+}
+.instrucaoDois {   
+    text-align: center;
+    font-family: mario;
+    font-size: 15px;
+    color:white;
+}
+#btn{
+    padding: 10px;
+    font-size: 35px;
+    font-family: mario;
+    border-radius: 10%;
+    cursor: pointer;
+    transition: all 200ms ease;
+}
+@font-face{
+    font-family: mario;
+    src: url(mario.ttf);
+}
